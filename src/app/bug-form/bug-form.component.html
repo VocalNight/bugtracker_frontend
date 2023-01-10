@@ -1,0 +1,86 @@
+
+<form (ngSubmit)="onSubmit(bugForm)" #bugForm="ngForm">
+
+
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Id</mat-label>
+      <input matInput type="number" class="form-control" [(ngModel)]="model.id" name="Id">
+    </mat-form-field>
+  </div>
+
+<div class="form-group">
+  <mat-form-field>
+    <mat-label>Number</mat-label>
+    <input matInput type="number" class="form-control" [(ngModel)]="model.number" name="number">
+  </mat-form-field>
+</div>
+
+<div class="form-group">
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput type="text" class="form-control" [(ngModel)]="model.title" name="title">
+  </mat-form-field>
+</div>
+
+<div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput type="text" placeholder="Add a description" class="form-control" [(ngModel)]="model.description" name="description"></textarea>
+  </mat-form-field>
+</div>
+
+<div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Reporter</mat-label>
+      <mat-select [(ngModel)]="model.reporter" name="reporter">
+        <mat-option *ngFor="let name of reporters" [value]="name">{{name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Assignee</mat-label>
+      <mat-select [(ngModel)]="model.assignee" name="assignee">
+        <mat-option *ngFor="let name of reporters" [value]="name">{{name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Version</mat-label>
+      <mat-select [(ngModel)]="model.version" name="version">
+        <mat-option *ngFor="let version of versions" [value]="version">{{version}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="model.status" name="status">
+        <mat-option *ngFor="let status of statuses" [value]="status">{{status}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Severity</mat-label>
+      <mat-select [(ngModel)]="model.severity" name="severity">
+        <mat-option *ngFor="let severity of severities" [value]="severity">{{severity}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="form-group">
+  <mat-form-field>
+    <mat-label>Classification</mat-label>
+    <input matInput type="text" placeholder="" class="form-control" [(ngModel)]="model.classification" name="classification">
+  </mat-form-field>
+</div>
+
+<button type="submit" color="primary"  mat-raised-button>Create case</button>
+</form>

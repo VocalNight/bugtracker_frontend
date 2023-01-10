@@ -1,0 +1,84 @@
+
+<div>
+  <mat-toolbar>
+    <span>Bugtracker</span>
+  </mat-toolbar>
+</div>
+
+<div class="header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($any($event).target.value)" placeholder="Filter">
+  </mat-form-field>
+
+</div>
+
+<div>
+<mat-table [dataSource]="datasourceObs">
+
+  <ng-container id="selectColumn" matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="[$event.stopPropagation(), selectedTest(row)]"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="number">
+    <mat-header-cell *matHeaderCellDef> Number </mat-header-cell>
+    <mat-cell *matCellDef="let bugs"> {{bugs.number}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="bugTitle">
+    <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+    <mat-cell *matCellDef="let bugs"> {{bugs.title}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+    <mat-cell *matCellDef="let bugs"> {{bugs.description}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="reporter">
+    <mat-header-cell *matHeaderCellDef> Reporter </mat-header-cell>
+    <mat-cell *matCellDef="let bugs"> {{bugs.reporter}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="assignee">
+    <mat-header-cell *matHeaderCellDef> Assignee </mat-header-cell>
+    <mat-cell *matCellDef="let bugs"> {{bugs.assignee}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="version">
+    <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
+    <mat-cell *matCellDef="let bugs"> {{bugs.version}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+    <mat-cell *matCellDef="let bugs"> {{bugs.status}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="severity">
+    <mat-header-cell *matHeaderCellDef> Severity </mat-header-cell>
+    <mat-cell *matCellDef="let bugs"> {{bugs.severity}} </mat-cell>
+  </ng-container>
+
+
+
+  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+</mat-table>
+
+</div>
+
+<div>
+  <button color="primary"  mat-raised-button>Create</button>
+  <button color="accent" mat-raised-button>Edit</button>
+</div>
+
+<div>
+  <app-bug-form [bugs]="datasourceObs"></app-bug-form>
+</div>
